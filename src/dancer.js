@@ -8,9 +8,20 @@ var Dancer = function(top, left, timeBetweenSteps){
   this.currentX = this.currentX || random(0, left);
   this.currentY = this.currentY || random(0, top);
 
+  this.prevX = this.currentX;
+  this.prevY = this.currentY;
+
   // now that we have defined the dancer object, we can start setting up important parts of it by calling the methods we wrote
   // this one sets the position to some random default point within the body
   this.setPosition(top, left);
+
+  $(this.$node[0]).on('mouseover', function(event) {
+    console.log("hit");
+    var sound = $('.sound');
+    var robotAudio = sound.find('audio')[0];
+
+    robotAudio.play();
+  });
 };
 
 Dancer.prototype.step = function(){

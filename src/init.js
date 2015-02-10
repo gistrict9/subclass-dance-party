@@ -6,6 +6,7 @@ $(document).ready(function(){
   random = function(min,max){
     return Math.floor(Math.random()*(max-min)+min);
   }
+
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
      * buttons on index.html. You should only need to make one small change to it.
@@ -33,6 +34,36 @@ $(document).ready(function(){
       random(1,1)
     );
     $('body').append(dancer.$node);
+    window.dancers.push(dancer);
+  });
+
+  $(".lineUp").on("click", function(event){
+    for (var i=0; i<window.dancers.length; i++) {
+      window.dancers[i].currentX = 100 + (i * 40);
+      window.dancers[i].currentY = 100 + (i * 40);
+    }
+  });
+
+  $(".buddyDance").on("click", function(event) {
+
+    for (var i=0; i<window.dancers.length-1; i=i+2) {
+      var x = random(0,window.innerWidth-200);
+      var y = random(0, window.innerHeight-200);
+      window.dancers[i].currentX = x;
+      window.dancers[i].currentY = y;
+      window.dancers[i+1].currentX = x+50;
+      window.dancers[i+1].currentY = y;
+    }
+  });
+
+  $(".freeStyle").on("click", function(event) {
+
+    for (var i=0; i<window.dancers.length; i++) {
+      var x = random(0,window.innerWidth-200);
+      var y = random(0, window.innerHeight-200);
+      window.dancers[i].currentX = x;
+      window.dancers[i].currentY = y;
+    }
   });
 
 });
