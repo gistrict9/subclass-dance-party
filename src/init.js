@@ -1,6 +1,11 @@
+
 $(document).ready(function(){
   window.dancers = [];
 
+  //this should be global
+  random = function(min,max){
+    return Math.floor(Math.random()*(max-min)+min);
+  }
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
      * buttons on index.html. You should only need to make one small change to it.
@@ -25,9 +30,10 @@ $(document).ready(function(){
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
-      Math.random() * 1000
+      random(1,1)
     );
     $('body').append(dancer.$node);
   });
+
 });
 
